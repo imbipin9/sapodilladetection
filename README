@@ -1,1 +1,53 @@
-Sapodilladetection
+# Sapodilla detection
+Sapodilla fruit detection using YoloV3, with support for training inference & evaluation
+
+## Installation
+### Installing from source
+
+For normal training and evaluation we recommend installing the package from source using a poetry virtual environment.
+
+```bash
+git clone https://github.com/imbipin9/sapodilladetection.git 
+cd PyTorch-YOLOv3/
+pip3 install poetry --user
+poetry install
+```
+
+#### Download dataset
+
+Dataset can be downloaded from https://drive.google.com/file/d/1F_yVqQ0w-eAqAqFrwGDuSl3eaH4v_HL9/view?usp=sharing
+Extract dataset
+'''bash
+tar xvzf dataset.tar
+'''
+#### Download pretrained checkpoint
+
+Pre-trained checkpoint can be downloaded from https://drive.google.com/file/d/1Zkcni9KCpMzC7Rz9X2VRM5T9xcsx3Gnt/view?usp=sharing
+
+'''bash
+ls yolov3_ckpt_997.pth
+'''
+
+#### Custom model
+
+```bash
+./config/create_custom_model.sh 3  # Will create custom model 'yolov3-custom.cfg'
+```
+
+#### Classes
+Add class names to `data/custom/classes.names`. This file should have one row per class name.
+
+#### Train
+To train on the custom dataset run:
+
+```bash
+poetry run yolo-train --model yolov3-custom.cfg --data config/custom.data --epochs 1000 --conf_thres 0.05 --nms_thres 0.2 --pretrained_weights yolov3_ckpt_997.pth 
+
+```
+#### Inference
+To run inference 
+'''bash
+poetry run python3 test.py
+'''
+
+
