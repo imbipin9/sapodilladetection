@@ -8,7 +8,7 @@ For normal training and evaluation we recommend installing the package from sour
 
 ```bash
 git clone https://github.com/imbipin9/sapodilladetection.git 
-cd PyTorch-YOLOv3/
+cd sapodilladetection
 pip3 install poetry --user
 poetry install
 ```
